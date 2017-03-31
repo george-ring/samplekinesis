@@ -1,4 +1,4 @@
-package com.ring.testConsumer;
+package com.ring.testKinesis;
 
 import com.amazonaws.services.kinesis.clientlibrary.interfaces.IRecordProcessor;
 import com.amazonaws.services.kinesis.clientlibrary.interfaces.IRecordProcessorFactory;

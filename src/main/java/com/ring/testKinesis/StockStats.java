@@ -1,4 +1,4 @@
-package com.ring.testConsumer;
+package com.ring.testKinesis;
 
 /**
  * Created by Karan.Keswani on 3/30/17.
