@@ -8,7 +8,6 @@ import com.amazonaws.services.kinesis.model.PutRecordRequest
 import com.amazonaws.services.kinesis.{AmazonKinesis, AmazonKinesisClient}
 import com.ring.model.StockTrade
 import com.ring.testKinesis.StockTradeGenerator
-import com.ring.testKinesis.consumer.TickerReader
 import com.ring.utils.{ConfigurationUtils, CredentialUtils}
 import org.apache.commons.logging.LogFactory
 
@@ -16,9 +15,12 @@ import org.apache.commons.logging.LogFactory
   * Created by Karan.Keswani on 3/31/17.
   */
 class TickerGenerator {
+
+}
+object TickerGenerator {
   def checkUsage(args: Array[String]): Unit = {
     if(args.length != 2) {
-      println(s"Usage ${classOf[TickerReader]} <application name> <stream name> <region>")
+      println(s"Usage ${classOf[TickerGenerator]} <application name> <stream name> <region>")
       System.exit(1)
     }
   }
@@ -81,8 +83,6 @@ class TickerGenerator {
 
     val credentials = CredentialUtils.getCredentialsProvider.getCredentials
 
-//    val kinesisClient = AmazonKinesisClientBuilder.wi
-//    kinesisClient.
 
     val kinesisClient = new AmazonKinesisClient(credentials, ConfigurationUtils.getClientConfigWithUserAgent)
     kinesisClient.setRegion(region)

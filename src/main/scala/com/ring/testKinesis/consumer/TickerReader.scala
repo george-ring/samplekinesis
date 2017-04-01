@@ -14,11 +14,11 @@ import org.apache.commons.logging.LogFactory
 /**
   * Created by Karan.Keswani on 3/30/17.
   */
-//class ScriptsReader {
-//
-//}
 
-class TickerReader {
+class TickerReader(){
+
+}
+object TickerReader {
   private val log = LogFactory.getLog(classOf[TickerReader])
   private val ROOT_LOGGER = Logger.getLogger("")
   private val PROCESSOR_LOGGER = Logger.getLogger("com.ring.testConsumer");
