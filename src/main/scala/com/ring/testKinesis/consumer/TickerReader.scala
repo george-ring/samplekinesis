@@ -18,14 +18,14 @@ import org.apache.commons.logging.LogFactory
 //
 //}
 
-class ScriptsReader {
-  private val log = LogFactory.getLog(classOf[ScriptsReader])
+class TickerReader {
+  private val log = LogFactory.getLog(classOf[TickerReader])
   private val ROOT_LOGGER = Logger.getLogger("")
   private val PROCESSOR_LOGGER = Logger.getLogger("com.ring.testConsumer");
 
   def checkUsage(args: Array[String]): Unit = {
     if(args.length != 3) {
-      println(s"Usage ${classOf[ScriptsReader]} <application name> <stream name> <region>")
+      println(s"Usage ${classOf[TickerReader]} <application name> <stream name> <region>")
       System.exit(1)
     }
   }

@@ -10,6 +10,7 @@ lazy val root = (project in file(".")).
     name := "sample-kinesis",
     libraryDependencies ++= Seq(
       scalaTest % Test,
-      "com.amazonaws" % "amazon-kinesis-client" % "1.7.4"
+      "com.amazonaws" % "amazon-kinesis-client" % "1.6.3"
     )
   )
+scalacOptions := Seq("-unchecked", "-deprecation")
