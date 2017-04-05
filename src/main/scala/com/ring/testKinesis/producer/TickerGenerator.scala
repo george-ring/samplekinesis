@@ -8,7 +8,7 @@ import com.amazonaws.services.kinesis.model.PutRecordRequest
 import com.amazonaws.services.kinesis.{AmazonKinesis, AmazonKinesisClient}
 import com.ring.model.StockTrade
 import com.ring.testKinesis.StockTradeGenerator
-import com.ring.utils.{ConfigurationUtils, CredentialUtils}
+import com.ring.utils.ConfigurationUtils
 import org.apache.commons.logging.LogFactory
 
 /**
@@ -20,7 +20,7 @@ class TickerGenerator {
 object TickerGenerator {
   def checkUsage(args: Array[String]): Unit = {
     if(args.length != 2) {
-      println(s"Usage ${classOf[TickerGenerator]} <application name> <stream name> <region>")
+      println(s"Usage ${classOf[TickerGenerator]} <stream name> <region>")
       System.exit(1)
     }
   }
@@ -81,10 +81,9 @@ object TickerGenerator {
       System.exit(1)
     }
 
-    val credentials = CredentialUtils.getCredentialsProvider.getCredentials
+//    val credentials = CredentialUtils.getCredentialsProvider.getCredentials
 
-
-    val kinesisClient = new AmazonKinesisClient(credentials, ConfigurationUtils.getClientConfigWithUserAgent)
+    val kinesisClient = new AmazonKinesisClient(ConfigurationUtils.getClientConfigWithUserAgent)
     kinesisClient.setRegion(region)
 
     // Validate that the stream exists and is active

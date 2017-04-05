@@ -3,13 +3,12 @@ package com.ring.testKinesis.consumer
 import java.util.UUID
 import java.util.logging.{Level, Logger}
 
-import com.amazonaws.auth.AWSCredentialsProvider
+import com.amazonaws.auth.InstanceProfileCredentialsProvider
 import com.amazonaws.regions.RegionUtils
 import com.amazonaws.services.kinesis.clientlibrary.lib.worker.{KinesisClientLibConfiguration, Worker}
 import com.ring.testKinesis.StockTradeRecordProcessorFactory
-import com.ring.utils.{ConfigurationUtils, CredentialUtils}
+import com.ring.utils.ConfigurationUtils
 import org.apache.commons.logging.LogFactory
-//import com.ring.testConsumer.CredentialUtils
 
 /**
   * Created by Karan.Keswani on 3/30/17.
@@ -21,7 +20,7 @@ class TickerReader(){
 object TickerReader {
   private val log = LogFactory.getLog(classOf[TickerReader])
   private val ROOT_LOGGER = Logger.getLogger("")
-  private val PROCESSOR_LOGGER = Logger.getLogger("com.ring.testConsumer");
+  private val PROCESSOR_LOGGER = Logger.getLogger("com.ring.testConsumer")
 
   def checkUsage(args: Array[String]): Unit = {
     if(args.length != 3) {
@@ -50,10 +49,10 @@ object TickerReader {
 
     setLogLevels()
 
-    val credentialsProvider: AWSCredentialsProvider = CredentialUtils.getCredentialsProvider
+    val instanceProfileCredentialsProvider = new InstanceProfileCredentialsProvider()
 
     val workerId = String.valueOf(UUID.randomUUID)
-    val kclConfig = new KinesisClientLibConfiguration(applicationName, streamName, credentialsProvider, workerId)
+    val kclConfig = new KinesisClientLibConfiguration(applicationName, streamName, instanceProfileCredentialsProvider, workerId)
       .withRegionName(region.getName)
       .withCommonClientConfig(ConfigurationUtils.getClientConfigWithUserAgent)
 
@@ -71,5 +70,4 @@ object TickerReader {
     }
     System.exit(exitCode)
   }
-
 }
